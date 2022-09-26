@@ -17,11 +17,11 @@ module.exports = (http) => {
             userSwipedislikes: [],
             id: socket.id
         })
-        
+        console.log(data)
         const currentUser = users.find(x => x.id === socket.id)
         io.to(currentUser.id).emit("user_connected", currentUser)  
 
-        console.log(users.length)
+        
 
     }),
     socket.on("update_user", async (data) => {

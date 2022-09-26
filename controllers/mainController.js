@@ -33,6 +33,7 @@ module.exports = {
         const compare =  await bcrypt.compare(userpass, result.userpass)
         if(compare){
             req.session.user = result
+            console.log(req.session.user)
             res.send({error:false, message: "user was found", result})
         } else {
             return res.send({error:true, message: "incorrect password"})
@@ -57,8 +58,9 @@ module.exports = {
     },
     logout: async (req, res) => {
         
-        req.session.destroy();
-        console.log(req.session.user)
+        // req.session.destroy();
+        delete req.session.user
+        
         res.send({error:false, message: "user was remover from session"})
     },
     addNewPhoto: async (req, res) => {
