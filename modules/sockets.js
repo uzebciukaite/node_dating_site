@@ -6,7 +6,12 @@ let users = []
 
 
 module.exports = (http) => {
-    const io = socket(http, {cors: {origin: "https://extraordinary-biscotti-befba4.netlify.app",  methods: "GET, POST"}})
+    const io = socket(http, 
+        {cors: 
+        {origin: "https://extraordinary-biscotti-befba4.netlify.app",  
+        methods: "GET, POST",
+        allowedHeaders: ["Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type"],
+        credentials: true}})
 
     io.on("connect", (socket) => {
         //connect logged in user to socket
