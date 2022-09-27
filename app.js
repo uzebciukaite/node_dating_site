@@ -9,17 +9,17 @@ require("dotenv").config();
 
 
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "https://extraordinary-biscotti-befba4.netlify.app");
-//   res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept");
-//   res.header("Access-Control-Allow-Credentials", true)
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://extraordinary-biscotti-befba4.netlify.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", true)
 
-//    if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-//     return res.status(200).json({});
-//   }
-//   next()
-// })
+   if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next()
+})
 
 http.listen(process.env.PORT || 4000, () => {
     console.log("You are connected")
@@ -43,11 +43,11 @@ mongoose.connect(process.env.MONGO_KEY,
 
 app.use(express.json())
 
-app.use(cors({
-    origin: "https://extraordinary-biscotti-befba4.netlify.app",
-    credentials: true,
-    methods: "GET, POST"
-}))
+// app.use(cors({
+//     origin: "https://extraordinary-biscotti-befba4.netlify.app",
+//     credentials: true,
+//     methods: "GET, POST"
+// }))
 
 app.use(session({
     secret: "sdvsvsdvsdv",
