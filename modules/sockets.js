@@ -10,7 +10,7 @@ module.exports = (http) => {
         {cors: 
         {origin: "https://extraordinary-biscotti-befba4.netlify.app",  
         methods: "GET, POST",
-        allowedHeaders: ["Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type"],
+        allowedHeaders: ["Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Content-Type"],
         credentials: true}})
 
     io.on("connect", (socket) => {
