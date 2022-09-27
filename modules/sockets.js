@@ -6,7 +6,7 @@ let users = []
 
 
 module.exports = (http) => {
-    const io = socket(http, {cors: {origin: "http://localhost:3000"}})
+    const io = socket(http, {cors: {origin: "*"}})
 
     io.on("connect", (socket) => {
         //connect logged in user to socket

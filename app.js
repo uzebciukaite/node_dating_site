@@ -7,9 +7,24 @@ const http = require("http").createServer(app)
 const mainRouter = require("./routes/mainRouter")
 require("dotenv").config();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next()
+})
+
+http.listen(process.env.PORT || 4000, () => {
+    console.log("You are connected")
+});
+
+
 require("./modules/sockets")(http)
 
-mongoose.connect(process.env.MONGO_KEY)
+mongoose.connect(process.env.MONGO_KEY, 
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+},)
 .then(res => {
     console.log("connection succesful")
 
@@ -17,14 +32,14 @@ mongoose.connect(process.env.MONGO_KEY)
     console.log(e)
 })
 
-http.listen(4000);
+
 app.use(express.json())
 
-app.use(cors({
-    origin: true,
-    credentials: true,
-    methods: "GET, POST"
-}))
+// app.use(cors({
+//     origin: true,
+//     credentials: true,
+//     methods: "GET, POST"
+// }))
 
 app.use(session({
     secret: "sdvsvsdvsdv",
